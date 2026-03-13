@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VERBALIA – Học Viện Ngôn Ngữ Sáng Tạo</title>
+  <meta name="description" content="VERBALIA – Học Viện Ngôn Ngữ Sáng Tạo. Learn today, shine tomorrow. Trung tâm tiếng Anh sáng tạo cho học sinh lớp 1 đến lớp 5." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          },
+          boxShadow: {
+            soft: '0 24px 70px rgba(15, 23, 42, .09)',
+            giant: '0 40px 140px rgba(88, 28, 135, .22)',
+            orange: '0 35px 120px rgba(249, 115, 22, .20)',
+            glass: '0 18px 60px rgba(15, 23, 42, .11)'
+          },
+          keyframes: {
+            floaty: {
+              '0%,100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-16px)' }
+            },
+            floatySlow: {
+              '0%,100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-22px) rotate(3deg)' }
+            },
+            orb: {
+              '0%': { transform: 'rotate(0deg) translateX(165px) rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg) translateX(165px) rotate(-360deg)' }
+            },
+            orb2: {
+              '0%': { transform: 'rotate(0deg) translateX(112px) rotate(0deg)' },
+              '100%': { transform: 'rotate(-360deg) translateX(112px) rotate(360deg)' }
+            },
+            pulseGlow: {
+              '0%,100%': { opacity: '.6', transform: 'scale(1)' },
+              '50%': { opacity: '1', transform: 'scale(1.06)' }
+            },
+            shine: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' }
+            },
+            rise: {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            },
+            marquee: {
+              '0%': { transform: 'translateX(0)' },
+              '100%': { transform: 'translateX(-50%)' }
+            },
+            spinSlow: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' }
+            },
+            wave: {
+              '0%,100%': { transform: 'translateX(0) translateY(0)' },
+              '50%': { transform: 'translateX(12px) translateY(-10px)' }
+            }
+          },
+          animation: {
+            floaty: 'floaty 7s ease-in-out infinite',
+            floatySlow: 'floatySlow 10s ease-in-out infinite',
+            orb: 'orb 24s linear infinite',
+            orb2: 'orb2 17s linear infinite',
+            pulseGlow: 'pulseGlow 3.5s ease-in-out infinite',
+            shine: 'shine 3s linear infinite',
+            rise: 'rise .9s ease forwards',
+            marquee: 'marquee 26s linear infinite',
+            spinSlow: 'spinSlow 30s linear infinite',
+            wave: 'wave 9s ease-in-out infinite'
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    :root {
+      --bg-1: #fff8ee;
+      --bg-2: #fbfdff;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --violet: #6d28d9;
+      --purple: #9333ea;
+      --orange: #f97316;
+      --gold: #fbbf24;
+      --heroX: 50%;
+      --heroY: 40%;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--ink);
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(249,115,22,.15), transparent 20%),
+        radial-gradient(circle at 85% 8%, rgba(147,51,234,.18), transparent 22%),
+        radial-gradient(circle at 60% 68%, rgba(251,191,36,.12), transparent 22%),
+        linear-gradient(180deg, #fffaf4 0%, #ffffff 32%, #f8fbff 70%, #ffffff 100%);
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(148,163,184,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148,163,184,.06) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at center, black, transparent 82%);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .noise::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+      opacity: .35;
+      pointer-events: none;
+      mix-blend-mode: soft-light;
+    }
+
+    .progress-bar {
+      position: fixed;
+      inset: 0 auto auto 0;
+      width: 0;
+      height: 4px;
+      z-index: 70;
+      background: linear-gradient(90deg, #6d28d9, #f97316, #fbbf24);
+      box-shadow: 0 8px 40px rgba(109,40,217,.28);
+    }
+
+    .glass {
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      background: rgba(255,255,255,.68);
+      border: 1px solid rgba(255,255,255,.7);
+    }
+
+    .dark-glass {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(15,23,42,.55);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #6d28d9 0%, #ec4899 35%, #f97316 70%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .hero-stage::before {
+      content: '';
+      position: absolute;
+      inset: -14% -8% auto -8%;
+      height: 72%;
+      background: radial-gradient(500px circle at var(--heroX) var(--heroY), rgba(255,255,255,.28), transparent 42%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .world-card,
+    .tilt-card,
+    .metric-card,
+    .trial-glow {
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px) scale(.98);
+      transition: opacity .75s cubic-bezier(.2,.8,.2,1), transform .75s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .orbit-wrap {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+      width: 330px;
+      height: 330px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+    }
+
+    .orbit-wrap.small {
+      width: 224px;
+      height: 224px;
+      border-color: rgba(251,191,36,.2);
+    }
+
+    .orbit-item,
+    .orbit-item-small {
+      position: absolute;
+      top: calc(50% - 36px);
+      left: calc(50% - 36px);
+      width: 72px;
+      height: 72px;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 16px 40px rgba(15,23,42,.28);
+    }
+
+    .orbit-item {
+      background: linear-gradient(135deg, rgba(109,40,217,.96), rgba(249,115,22,.96));
+      animation: orb 24s linear infinite;
+    }
+
+    .orbit-item-small {
+      background: linear-gradient(135deg, rgba(15,23,42,.95), rgba(59,130,246,.85));
+      animation: orb2 17s linear infinite;
+    }
+
+    .shine-line {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shine-line::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.65) 50%, transparent 100%);
+      background-size: 200% 100%;
+      animation: shine 3s linear infinite;
+      pointer-events: none;
+      opacity: .6;
+    }
+
+    .marquee { overflow: hidden; }
+    .marquee-track { width: max-content; animation: marquee 26s linear infinite; }
+
+    .faq-item[data-open="true"] .faq-answer {
+      grid-template-rows: 1fr;
+      opacity: 1;
+      margin-top: 18px;
+    }
+    .faq-answer {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition: .25s ease;
+    }
+    .faq-answer > div { overflow: hidden; }
+
+    .story-dot.active {
+      width: 34px;
+      background: linear-gradient(90deg, #6d28d9, #f97316);
+    }
+
+    .story-track { transition: transform .55s cubic-bezier(.2,.9,.2,1); }
+
+    .slot.active {
+      background: linear-gradient(135deg, rgba(109,40,217,.12), rgba(249,115,22,.12));
+      border-color: rgba(109,40,217,.35);
+      color: #4c1d95;
+      box-shadow: 0 10px 30px rgba(109,40,217,.12);
+    }
+
+    .floating-badge {
+      animation: floaty 6s ease-in-out infinite;
+    }
+
+    .glow-ring {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+      width: 140%;
+      aspect-ratio: 1;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(147,51,234,.18), transparent 56%);
+      filter: blur(14px);
+      pointer-events: none;
+      animation: pulseGlow 4s ease-in-out infinite;
+    }
+
+    .trial-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255,255,255,.38), rgba(255,255,255,.08), rgba(251,191,36,.34));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .section-bubble {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(40px);
+      opacity: .28;
+      pointer-events: none;
+    }
+
+    .cursor-blob {
+      position: fixed;
+      width: 380px;
+      height: 380px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(109,40,217,.14), rgba(249,115,22,.08), transparent 70%);
+      filter: blur(20px);
+      pointer-events: none;
+      z-index: -1;
+      translate: -50% -50%;
+      left: -9999px;
+      top: -9999px;
+    }
+
+    @media (max-width: 1023px) {
+      .orbit-wrap { width: 280px; height: 280px; }
+      .orbit-wrap.small { width: 198px; height: 198px; }
+      .cursor-blob { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-bar" id="progressBar"></div>
+  <div class="cursor-blob" id="cursorBlob"></div>
+
+  <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div class="section-bubble left-[-8rem] top-16 h-72 w-72 bg-fuchsia-300/60 animate-wave"></div>
+    <div class="section-bubble right-[-8rem] top-52 h-80 w-80 bg-orange-300/50 animate-floatySlow"></div>
+    <div class="section-bubble left-[32%] bottom-[-5rem] h-72 w-72 bg-amber-200/70 animate-wave"></div>
+  </div>
+
+  <header id="navbar" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4">
+      <div class="glass rounded-full px-4 py-3 shadow-glass sm:px-6">
+        <div class="flex items-center justify-between gap-4">
+          <a href="#home" class="flex items-center gap-3">
+            <div class="grid h-12 w-12 place-items-center rounded-[1.3rem] bg-gradient-to-br from-violet-700 via-fuchsia-500 to-orange-400 text-white shadow-giant rotate-3 transition duration-300 hover:rotate-6">
+              <i data-lucide="feather" class="h-6 w-6"></i>
+            </div>
+            <div>
+              <div class="text-lg font-black tracking-tight sm:text-xl">VERBALIA</div>
+              <div class="-mt-0.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Học Viện Ngôn Ngữ Sáng Tạo • Learn today, shine tomorrow</div>
+            </div>
+          </a>
+
+          <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-600">
+            <a href="#programs" class="transition hover:text-violet-700">Chương trình</a>
+            <a href="#why" class="transition hover:text-violet-700">Điểm khác biệt</a>
+            <a href="#journey" class="transition hover:text-violet-700">Lộ trình</a>
+            <a href="#trial" class="transition hover:text-violet-700">Học thử</a>
+            <a href="#stories" class="transition hover:text-violet-700">Phụ huynh</a>
+            <a href="#faq" class="transition hover:text-violet-700">FAQ</a>
+          </nav>
+
+          <div class="hidden lg:flex items-center gap-3">
+            <a href="#trial" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-violet-300 hover:text-violet-700">
+              <i data-lucide="calendar-heart" class="h-4 w-4"></i>
+              Học thử miễn phí
+            </a>
+            <a href="#trial" class="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-violet-800">
+              Nhận tư vấn ngay
+              <i data-lucide="arrow-right" class="h-4 w-4"></i>
+            </a>
+          </div>
+
+          <button id="mobileToggle" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 lg:hidden">
+            <i data-lucide="menu" class="h-5 w-5"></i>
+          </button>
+        </div>
+
+        <div id="mobileMenu" class="hidden lg:hidden pt-4">
+          <div class="grid gap-2 rounded-[1.7rem] border border-slate-100 bg-white/90 p-3 text-sm font-semibold text-slate-700">
+            <a class="rounded-2xl px-4 py-3 hover:bg-slate-50" href="#programs">Chương trình</a>
+            <a class="rounded-2xl px-4 py-3 hover:bg-slate-50" href="#why">Điểm khác biệt</a>
+            <a class="rounded-2xl px-4 py-3 hover:bg-slate-50" href="#journey">Lộ trình</a>
+            <a class="rounded-2xl px-4 py-3 hover:bg-slate-50" href="#trial">Học thử</a>
+            <a class="rounded-2xl px-4 py-3 hover:bg-slate-50" href="#stories">Phụ huynh</a>
+            <a class="rounded-2xl px-4 py-3 hover:bg-slate-50" href="#faq">FAQ</a>
+            <a class="mt-2 inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-violet-700 to-orange-500 px-4 py-3 font-bold text-white" href="#trial">
+              Đăng ký học thử
+              <i data-lucide="arrow-right" class="h-4 w-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="home" class="relative pt-28 sm:pt-32">
+    <section class="relative overflow-hidden">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="hero-stage noise reveal relative overflow-hidden rounded-[2.3rem] bg-slate-950 px-6 py-8 text-white shadow-giant sm:px-8 lg:px-10 lg:py-10">
+          <div class="hero-grid absolute inset-0 opacity-50"></div>
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(251,191,36,.18),transparent_22%),radial-gradient(circle_at_85%_20%,rgba(236,72,153,.22),transparent_26%),linear-gradient(135deg,#0f172a_0%,#1e1b4b_40%,#7c2d12_100%)]"></div>
+          <div class="absolute inset-x-0 top-0 h-px bg-white/20"></div>
+          <div class="relative z-10 grid gap-10 lg:grid-cols-[1.03fr_.97fr] lg:items-center">
+            <div class="max-w-2xl py-2">
+              <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.22em] text-amber-200 backdrop-blur-md">
+                <span class="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_0_6px_rgba(74,222,128,.16)]"></span>
+                Creative Language Institute
+              </div>
+
+              <h1 class="mt-6 text-4xl font-black leading-[1.02] tracking-tight sm:text-6xl lg:text-[5.25rem]">
+                Website khiến phụ huynh
+                <span class="gradient-text">trầm trồ</span>,
+                học sinh <span class="text-amber-300">thích mê</span>.
+              </h1>
+
+              <div class="mt-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-bold text-white/90 backdrop-blur-md">
+                <i data-lucide="sparkles" class="h-4 w-4 text-amber-300"></i>
+                Learn today, shine tomorrow
+              </div>
+
+              <p class="mt-6 max-w-xl text-lg leading-8 text-slate-300 sm:text-xl">
+                Một landing page theo đúng tinh thần quốc tế cho VERBALIA: hero cinematic, chuyển động mượt, số liệu động, trải nghiệm học thử nổi bật và cảm giác thương hiệu sáng tạo, cao cấp và khác biệt.
+              </p>
+
+              <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a href="#trial" class="shine-line inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-violet-600 via-fuchsia-500 to-orange-400 px-7 py-4 text-sm font-black text-white shadow-orange transition hover:-translate-y-0.5">
+                  Đặt lịch học thử miễn phí
+                  <i data-lucide="sparkles" class="h-4 w-4"></i>
+                </a>
+                <a href="#programs" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/10 px-7 py-4 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white/15">
+                  Xem chương trình học
+                  <i data-lucide="move-right" class="h-4 w-4"></i>
+                </a>
+              </div>
+
+              <div class="mt-9 grid gap-4 sm:grid-cols-3">
+                <div class="metric-card rounded-[1.4rem] border border-white/10 bg-white/10 p-4 backdrop-blur-md">
+                  <div class="text-[11px] font-extrabold uppercase tracking-[0.22em] text-slate-300">Vibe</div>
+                  <div class="mt-2 text-lg font-black">Premium + playful</div>
+                </div>
+                <div class="metric-card rounded-[1.4rem] border border-white/10 bg-white/10 p-4 backdrop-blur-md">
+                  <div class="text-[11px] font-extrabold uppercase tracking-[0.22em] text-slate-300">Target</div>
+                  <div class="mt-2 text-lg font-black">Lớp 1 đến lớp 5</div>
+                </div>
+                <div class="metric-card rounded-[1.4rem] border border-white/10 bg-white/10 p-4 backdrop-blur-md">
+                  <div class="text-[11px] font-extrabold uppercase tracking-[0.22em] text-slate-300">Designed for</div>
+                  <div class="mt-2 text-lg font-black">Parents who compare</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative min-h-[34rem] lg:min-h-[42rem]">
+              <div class="glow-ring"></div>
+              <div class="orbit-wrap"></div>
+              <div class="orbit-wrap small"></div>
+              <div class="orbit-item"><i data-lucide="mic-2" class="h-7 w-7"></i></div>
+              <div class="orbit-item-small"><i data-lucide="book-open-text" class="h-6 w-6"></i></div>
+
+              <div data-depth="0.18" class="floating-badge absolute left-0 top-10 z-20 rounded-[1.6rem] border border-white/10 bg-white/12 px-4 py-4 backdrop-blur-md shadow-glass sm:left-4">
+                <div class="flex items-center gap-3">
+                  <div class="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-400/15 text-emerald-300"><i data-lucide="badge-check" class="h-6 w-6"></i></div>
+                  <div>
+                    <div class="text-sm font-black">Speaking-first classes</div>
+                    <div class="text-xs text-slate-300">Confidence grows weekly</div>
+                  </div>
+                </div>
+              </div>
+
+              <div data-depth="0.28" class="floating-badge absolute right-0 top-24 z-20 rounded-[1.6rem] border border-white/10 bg-white/12 px-4 py-4 backdrop-blur-md shadow-glass sm:right-3" style="animation-delay: 1.3s">
+                <div class="flex items-center gap-3">
+                  <div class="grid h-12 w-12 place-items-center rounded-2xl bg-amber-300/15 text-amber-200"><i data-lucide="rocket" class="h-6 w-6"></i></div>
+                  <div>
+                    <div class="text-sm font-black">Immersive trial lesson</div>
+                    <div class="text-xs text-slate-300">A wow first impression</div>
+                  </div>
+                </div>
+              </div>
+
+              <div data-depth="0.1" class="world-card trial-glow absolute inset-x-7 top-28 z-10 overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 p-3 shadow-glass backdrop-blur-xl sm:inset-x-10 lg:top-24">
+                <div class="rounded-[1.6rem] border border-white/10 bg-slate-900/70 p-4">
+                  <div class="flex items-center justify-between gap-4">
+                    <div>
+                      <div class="text-[11px] font-extrabold uppercase tracking-[0.2em] text-slate-400">Live demo lesson</div>
+                      <div class="mt-1 text-xl font-black">VERBALIA Experience</div>
+                    </div>
+                    <div class="rounded-full bg-emerald-400/12 px-3 py-1.5 text-xs font-bold text-emerald-300">Trial open</div>
+                  </div>
+
+                  <div class="mt-4 overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-violet-800 via-fuchsia-700 to-orange-400 p-4">
+                    <div class="grid gap-4 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
+                      <div>
+                        <div class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-white/90">English Mission</div>
+                        <div class="mt-4 text-2xl font-black leading-tight sm:text-3xl">Learn today, shine tomorrow.</div>
+                        <p class="mt-3 text-sm leading-6 text-white/85">Các section, motion và CTA được làm để người xem có cảm giác đây là một thương hiệu giáo dục thực sự được đầu tư.</p>
+                        <div class="mt-5 flex flex-wrap gap-2">
+                          <span class="rounded-full border border-white/20 bg-white/15 px-3 py-1.5 text-xs font-semibold">Story-based</span>
+                          <span class="rounded-full border border-white/20 bg-white/15 px-3 py-1.5 text-xs font-semibold">Speaking focus</span>
+                          <span class="rounded-full border border-white/20 bg-white/15 px-3 py-1.5 text-xs font-semibold">Parent updates</span>
+                        </div>
+                      </div>
+                      <div class="relative mx-auto w-full max-w-[19rem]">
+                        <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=900&q=80" alt="Kids learning English" class="h-[20rem] w-full rounded-[1.5rem] object-cover shadow-soft" />
+                        <div class="absolute -left-5 bottom-5 rounded-2xl bg-slate-950/70 px-4 py-3 text-sm backdrop-blur-md">
+                          <div class="font-black">Mini class energy</div>
+                          <div class="text-xs text-slate-300">Fun enough for kids</div>
+                        </div>
+                        <div class="absolute -right-4 top-5 rounded-2xl bg-white/90 px-4 py-3 text-sm text-slate-900 shadow-soft">
+                          <div class="font-black">Parent-friendly clarity</div>
+                          <div class="text-xs text-slate-500">Trust built fast</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 grid gap-4 sm:grid-cols-3">
+                    <div class="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
+                      <div class="text-[11px] uppercase tracking-[0.2em] text-slate-400">Visual level</div>
+                      <div class="mt-2 text-lg font-black">International feel</div>
+                    </div>
+                    <div class="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
+                      <div class="text-[11px] uppercase tracking-[0.2em] text-slate-400">Interaction</div>
+                      <div class="mt-2 text-lg font-black">Motion + micro UX</div>
+                    </div>
+                    <div class="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
+                      <div class="text-[11px] uppercase tracking-[0.2em] text-slate-400">Conversion</div>
+                      <div class="mt-2 text-lg font-black">Trial-first CTA</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div data-depth="0.22" class="absolute bottom-1 right-6 z-20 rounded-[1.5rem] border border-white/12 bg-white/12 p-4 backdrop-blur-xl shadow-glass sm:right-10">
+                <div class="text-[11px] uppercase tracking-[0.2em] text-slate-300">Hot section</div>
+                <div class="mt-2 text-lg font-black">Book a trial in 30 seconds</div>
+                <div class="mt-3 flex items-center gap-2 text-amber-300">
+                  <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                  <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                  <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                  <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                  <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="marquee reveal mt-6 rounded-[1.8rem] border border-slate-200 bg-white/80 px-4 py-4 shadow-soft backdrop-blur-md">
+          <div class="marquee-track flex items-center gap-10 text-sm font-extrabold uppercase tracking-[0.22em] text-slate-500">
+            <span>Premium design system</span>
+            <span>Scroll interactions</span>
+            <span>Animated counters</span>
+            <span>Trial lesson conversion zone</span>
+            <span>Parent-first structure</span>
+            <span>Global landing page vibe</span>
+            <span>Premium design system</span>
+            <span>Scroll interactions</span>
+            <span>Animated counters</span>
+            <span>Trial lesson conversion zone</span>
+            <span>Parent-first structure</span>
+            <span>Global landing page vibe</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-14 sm:py-18">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div class="tilt-card rounded-[2rem] border border-slate-200 bg-white p-6 shadow-soft">
+            <div class="text-[11px] font-extrabold uppercase tracking-[0.22em] text-violet-700">Landing power</div>
+            <div class="mt-3 text-4xl font-black tracking-tight"><span data-counter="96">0</span>%</div>
+            <p class="mt-3 text-slate-600 leading-7">Ấn tượng thị giác ngay từ hero để phụ huynh thấy đây là thương hiệu có đẳng cấp.</p>
+          </div>
+          <div class="tilt-card rounded-[2rem] border border-slate-200 bg-white p-6 shadow-soft">
+            <div class="text-[11px] font-extrabold uppercase tracking-[0.22em] text-orange-600">Motion feel</div>
+            <div class="mt-3 text-4xl font-black tracking-tight"><span data-counter="14">0</span>+</div>
+            <p class="mt-3 text-slate-600 leading-7">Hiệu ứng nhỏ nhưng đắt tiền: reveal, parallax, counter, slider, hover depth, progress line.</p>
+          </div>
+          <div class="tilt-card rounded-[2rem] border border-slate-200 bg-white p-6 shadow-soft">
+            <div class="text-[11px] font-extrabold uppercase tracking-[0.22em] text-emerald-700">Parent trust</div>
+            <div class="mt-3 text-4xl font-black tracking-tight"><span data-counter="5">0</span>x</div>
+            <p class="mt-3 text-slate-600 leading-7">Bố cục rõ hơn để phụ huynh đọc nhanh, hiểu nhanh, và muốn cho con học thử nhanh hơn.</p>
+          </div>
+          <div class="tilt-card rounded-[2rem] border border-slate-200 bg-white p-6 shadow-soft">
+            <div class="text-[11px] font-extrabold uppercase tracking-[0.22em] text-sky-700">Best use</div>
+            <div class="mt-3 text-4xl font-black tracking-tight"><span data-counter="30">0</span>s</div>
+            <p class="mt-3 text-slate-600 leading-7">Phần học thử được làm như một conversion machine: đẹp, rõ và thúc đẩy hành động.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="programs" class="py-16 sm:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal mx-auto max-w-3xl text-center">
+          <div class="text-sm font-extrabold uppercase tracking-[0.24em] text-violet-700">Programs</div>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-5xl">Phần chương trình học phải đẹp, rõ, và khiến phụ huynh thấy trung tâm có cấu trúc</h2>
+          <p class="mt-5 text-lg leading-8 text-slate-600">Website quốc tế thường làm rất rõ từng nhóm tuổi, mục tiêu đầu ra và trải nghiệm học. Đây là nơi bạn cho thấy VERBALIA là một học viện có bản sắc riêng, sáng tạo và khác biệt rõ ràng.</p>
+        </div>
+
+        <div class="mt-12 grid gap-6 lg:grid-cols-3">
+          <article class="tilt-card reveal overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-soft">
+            <div class="relative h-56 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1200&q=80" alt="Lớp 1-2" class="h-full w-full object-cover transition duration-700 hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent"></div>
+              <div class="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-black text-violet-700">Grades 1–2</div>
+              <div class="absolute bottom-5 left-5 right-5 text-white">
+                <div class="text-2xl font-black">Explorer Track</div>
+                <div class="mt-1 text-sm text-white/85">Bắt đầu nhẹ nhàng, phát âm đúng, yêu thích tiếng Anh từ sớm.</div>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="grid gap-3 text-sm text-slate-600">
+                <div class="flex gap-3"><i data-lucide="check" class="mt-0.5 h-4 w-4 text-emerald-600"></i><span>Làm quen ngôn ngữ bằng trò chơi và hoạt động kể chuyện.</span></div>
+                <div class="flex gap-3"><i data-lucide="check" class="mt-0.5 h-4 w-4 text-emerald-600"></i><span>Nói câu ngắn tự tin, tăng phản xạ nghe và từ vựng nền tảng.</span></div>
+                <div class="flex gap-3"><i data-lucide="check" class="mt-0.5 h-4 w-4 text-emerald-600"></i><span>Phụ huynh hiểu được con đang học gì, tiến bộ ra sao.</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tilt-card reveal overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-soft" style="transition-delay:.08s">
+            <div class="relative h-56 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80" alt="Lớp 3-4" class="h-full w-full object-cover transition duration-700 hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent"></div>
+              <div class="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-black text-orange-600">Grades 3–4</div>
+              <div class="absolute bottom-5 left-5 right-5 text-white">
+                <div class="text-2xl font-black">Builder Track</div>
+                <div class="mt-1 text-sm text-white/85">Mở rộng speaking, reading và confidence qua dự án mini.</div>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="grid gap-3 text-sm text-slate-600">
+                <div class="flex gap-3"><i data-lucide="check" class="mt-0.5 h-4 w-4 text-emerald-600"></i><span>Tăng vốn từ, phản xạ câu dài và khả năng trình bày ý.</span></div>
+                <div class="flex gap-3"><i data-lucide="check" class="mt-0.5 h-4 w-4 text-emerald-600"></i><span>Học qua nhiệm vụ, teamwork và challenge vừa vui vừa nhớ lâu.</span></div>
+                <div class="flex gap-3"><i data-lucide="check" class="mt-0.5 h-4 w-4 text-emerald-600"></i><span>Có đầu ra dễ nhìn thấy để phụ huynh thấy giá trị rõ hơn.</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tilt-card reveal overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-soft" style="transition-delay:.16s">
+            <div class="relative h-56 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1516534775068-ba3e7458af70?auto=format&fit=crop&w=1200&q=80" alt="Lớp 5" class="h-full w-full object-cover transition duration-700 hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent"></div>
+              <div class="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-black text-sky-700">Grade 5</div>
+              <div class="absolute bottom-5 left-5 right-5 text-white">
+                <div class="text-2xl font-black">Mastery Track</div>
+                <div class="mt-1 text-sm text-white/85">Củng cố nền tảng trước cấp 2 bằng speaking và tư duy ngôn ngữ.</div>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="grid gap-3 text-sm text-slate-600">
+                <div class="flex gap-3"><i data-lucide="check" class="mt-0.5 h-4 w-4 text-emerald-600"></i><span>Chuyển từ học vui sang học có chiến lược mà vẫn nhẹ nhàng.</span></div>
+                <div class="flex gap-3"><i data-lucide="check" class="mt-0.5 h-4 w-4 text-emerald-600"></i><span>Rèn speaking, reading và tự tin để vào giai đoạn mới.</span></div>
+                <div class="flex gap-3"><i data-lucide="check" class="mt-0.5 h-4 w-4 text-emerald-600"></i><span>Học sinh cảm thấy giỏi hơn thật, không chỉ “đi học thêm cho có”.</span></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="why" class="py-16 sm:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal overflow-hidden rounded-[2.4rem] bg-gradient-to-br from-slate-950 via-violet-950 to-orange-700 text-white shadow-giant">
+          <div class="grid gap-8 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
+            <div class="p-8 sm:p-10 lg:p-12">
+              <div class="text-sm font-extrabold uppercase tracking-[0.24em] text-amber-300">Why this feels global</div>
+              <h2 class="mt-4 text-3xl font-black leading-tight sm:text-5xl">Không phải cứ nhiều màu là đẹp. Cái làm website “quốc tế” là nhịp điệu, chiều sâu và cách dẫn cảm xúc.</h2>
+              <p class="mt-5 text-lg leading-8 text-slate-200">Tôi đẩy bản này theo hướng premium-playful: vẫn có năng lượng cho học sinh tiểu học, nhưng tinh gọn đủ để phụ huynh nhìn vào thấy tin tưởng và đánh giá cao thương hiệu.</p>
+              <div class="mt-8 grid gap-4 sm:grid-cols-2">
+                <div class="rounded-[1.7rem] border border-white/10 bg-white/8 p-5 backdrop-blur-md">
+                  <div class="flex items-center gap-3">
+                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white/10 text-amber-200"><i data-lucide="palette" class="h-6 w-6"></i></div>
+                    <div class="text-lg font-black">Visual hierarchy</div>
+                  </div>
+                  <p class="mt-3 text-sm leading-7 text-slate-200">Heading lớn, CTA rõ, khoảng trắng rộng và card nổi nhiều lớp.</p>
+                </div>
+                <div class="rounded-[1.7rem] border border-white/10 bg-white/8 p-5 backdrop-blur-md">
+                  <div class="flex items-center gap-3">
+                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white/10 text-violet-200"><i data-lucide="mouse-pointer-click" class="h-6 w-6"></i></div>
+                    <div class="text-lg font-black">Motion language</div>
+                  </div>
+                  <p class="mt-3 text-sm leading-7 text-slate-200">Parallax nhẹ, hover depth, counter và reveal tạo cảm giác tinh tế.</p>
+                </div>
+                <div class="rounded-[1.7rem] border border-white/10 bg-white/8 p-5 backdrop-blur-md">
+                  <div class="flex items-center gap-3">
+                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white/10 text-orange-200"><i data-lucide="target" class="h-6 w-6"></i></div>
+                    <div class="text-lg font-black">Conversion-first</div>
+                  </div>
+                  <p class="mt-3 text-sm leading-7 text-slate-200">Mọi section đều dẫn dần về hành động mạnh nhất: học thử.</p>
+                </div>
+                <div class="rounded-[1.7rem] border border-white/10 bg-white/8 p-5 backdrop-blur-md">
+                  <div class="flex items-center gap-3">
+                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white/10 text-emerald-200"><i data-lucide="shield-check" class="h-6 w-6"></i></div>
+                    <div class="text-lg font-black">Parent confidence</div>
+                  </div>
+                  <p class="mt-3 text-sm leading-7 text-slate-200">Nội dung rõ, có logic, không bị “đẹp nhưng rỗng”.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative min-h-[30rem] border-t border-white/10 lg:min-h-[38rem] lg:border-l lg:border-t-0">
+              <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1400&q=80" alt="Teacher with students" class="absolute inset-0 h-full w-full object-cover opacity-90" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
+              <div class="absolute inset-x-5 bottom-5 grid gap-4 sm:grid-cols-2">
+                <div class="rounded-[1.5rem] border border-white/10 bg-white/10 p-5 backdrop-blur-md">
+                  <div class="text-[11px] uppercase tracking-[0.2em] text-slate-300">Brand signal</div>
+                  <div class="mt-2 text-2xl font-black">High-end first impression</div>
+                </div>
+                <div class="rounded-[1.5rem] border border-white/10 bg-white/10 p-5 backdrop-blur-md">
+                  <div class="text-[11px] uppercase tracking-[0.2em] text-slate-300">User feeling</div>
+                  <div class="mt-2 text-2xl font-black">“Con mình học ở đây chắc thích lắm”</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="journey" class="py-16 sm:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal mx-auto max-w-3xl text-center">
+          <div class="text-sm font-extrabold uppercase tracking-[0.24em] text-orange-600">Learning Journey</div>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-5xl">Lộ trình hiển thị đẹp sẽ khiến website có chiều sâu hơn hẳn</h2>
+          <p class="mt-5 text-lg leading-8 text-slate-600">Thay vì chỉ nói trung tâm “dạy tốt”, hãy cho phụ huynh nhìn thấy hành trình từ buổi học thử đến lúc con tự tin dùng tiếng Anh hơn.</p>
+        </div>
+
+        <div class="mt-12 grid gap-6 xl:grid-cols-4">
+          <div class="reveal tilt-card rounded-[2rem] border border-slate-200 bg-white p-6 shadow-soft">
+            <div class="grid h-14 w-14 place-items-center rounded-2xl bg-violet-100 text-violet-700"><i data-lucide="search-check" class="h-7 w-7"></i></div>
+            <div class="mt-5 text-2xl font-black">01. Discover</div>
+            <p class="mt-3 text-slate-600 leading-7">Phụ huynh ghé website, hiểu trung tâm khác ở đâu và thấy phần học thử được đặt rất nổi.</p>
+          </div>
+          <div class="reveal tilt-card rounded-[2rem] border border-slate-200 bg-white p-6 shadow-soft" style="transition-delay:.08s">
+            <div class="grid h-14 w-14 place-items-center rounded-2xl bg-orange-100 text-orange-700"><i data-lucide="calendar-plus-2" class="h-7 w-7"></i></div>
+            <div class="mt-5 text-2xl font-black">02. Trial</div>
+            <p class="mt-3 text-slate-600 leading-7">Đặt lịch trong vài chạm, xem được slot đẹp và cảm nhận trải nghiệm học thử như một sự kiện đáng mong chờ.</p>
+          </div>
+          <div class="reveal tilt-card rounded-[2rem] border border-slate-200 bg-white p-6 shadow-soft" style="transition-delay:.16s">
+            <div class="grid h-14 w-14 place-items-center rounded-2xl bg-amber-100 text-amber-700"><i data-lucide="messages-square" class="h-7 w-7"></i></div>
+            <div class="mt-5 text-2xl font-black">03. Progress</div>
+            <p class="mt-3 text-slate-600 leading-7">Sau khi học, phụ huynh nhìn được phản hồi rõ, con hào hứng kể lại, niềm tin tăng lên rất nhanh.</p>
+          </div>
+          <div class="reveal tilt-card rounded-[2rem] border border-slate-200 bg-white p-6 shadow-soft" style="transition-delay:.24s">
+            <div class="grid h-14 w-14 place-items-center rounded-2xl bg-sky-100 text-sky-700"><i data-lucide="trophy" class="h-7 w-7"></i></div>
+            <div class="mt-5 text-2xl font-black">04. Grow</div>
+            <p class="mt-3 text-slate-600 leading-7">Học sinh tiến bộ dần, website tiếp tục đóng vai trò củng cố thương hiệu và giữ niềm tin của phụ huynh.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="trial" class="py-16 sm:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal trial-panel relative overflow-hidden rounded-[2.6rem] bg-gradient-to-br from-slate-950 via-violet-950 to-orange-700 p-1 shadow-giant">
+          <div class="absolute -left-10 top-10 h-44 w-44 rounded-full bg-fuchsia-400/18 blur-3xl"></div>
+          <div class="absolute right-0 top-0 h-56 w-56 rounded-full bg-amber-300/16 blur-3xl"></div>
+          <div class="relative grid gap-8 rounded-[2.45rem] bg-[linear-gradient(135deg,rgba(15,23,42,.94),rgba(88,28,135,.86),rgba(194,65,12,.82))] p-6 text-white sm:p-8 lg:grid-cols-[1.05fr_.95fr] lg:p-10">
+            <div class="relative">
+              <div class="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.22em] text-amber-200">
+                <i data-lucide="sparkles" class="h-4 w-4"></i>
+                Signature conversion section
+              </div>
+              <h2 class="mt-5 text-3xl font-black leading-tight sm:text-5xl">Section học thử phải đẹp đến mức người xem nhớ nhất cả website.</h2>
+              <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-200">Tôi làm khu này như một “booking experience” mini: vừa có cảm giác cao cấp, vừa có logic rất rõ để thúc đẩy hành động. Đây chính là section nên trở thành vũ khí chốt phụ huynh của VERBALIA.</p>
+
+              <div class="mt-8 grid gap-4 sm:grid-cols-3">
+                <div class="rounded-[1.5rem] border border-white/10 bg-white/10 p-5 backdrop-blur-md">
+                  <div class="text-[11px] uppercase tracking-[0.2em] text-slate-300">Step 1</div>
+                  <div class="mt-2 text-lg font-black">Chọn khối lớp</div>
+                  <p class="mt-2 text-sm leading-6 text-slate-200">Lớp 1–2, 3–4 hoặc lớp 5.</p>
+                </div>
+                <div class="rounded-[1.5rem] border border-white/10 bg-white/10 p-5 backdrop-blur-md">
+                  <div class="text-[11px] uppercase tracking-[0.2em] text-slate-300">Step 2</div>
+                  <div class="mt-2 text-lg font-black">Chọn lịch đẹp</div>
+                  <p class="mt-2 text-sm leading-6 text-slate-200">Cho phụ huynh cảm giác đang đặt một trải nghiệm thực.</p>
+                </div>
+                <div class="rounded-[1.5rem] border border-white/10 bg-white/10 p-5 backdrop-blur-md">
+                  <div class="text-[11px] uppercase tracking-[0.2em] text-slate-300">Step 3</div>
+                  <div class="mt-2 text-lg font-black">Nhận xác nhận</div>
+                  <p class="mt-2 text-sm leading-6 text-slate-200">Gắn Zalo, CRM hoặc form thật rất dễ.</p>
+                </div>
+              </div>
+
+              <div class="mt-8 overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 p-4 backdrop-blur-md sm:p-5">
+                <div class="flex items-center justify-between gap-4">
+                  <div>
+                    <div class="text-[11px] uppercase tracking-[0.2em] text-slate-300">Featured trial flow</div>
+                    <div class="mt-2 text-2xl font-black">VERBALIA Discovery Class</div>
+                  </div>
+                  <div class="rounded-full bg-emerald-400/14 px-3 py-1.5 text-xs font-bold text-emerald-300">Free</div>
+                </div>
+                <div class="mt-5 grid gap-4 sm:grid-cols-[.95fr_1.05fr] sm:items-center">
+                  <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80" alt="Trial lesson" class="h-60 w-full rounded-[1.6rem] object-cover shadow-soft" />
+                  <div>
+                    <div class="rounded-[1.4rem] border border-white/10 bg-slate-950/25 p-4">
+                      <div class="flex items-center gap-3">
+                        <div class="grid h-12 w-12 place-items-center rounded-2xl bg-violet-400/20 text-violet-200"><i data-lucide="party-popper" class="h-6 w-6"></i></div>
+                        <div>
+                          <div class="font-black">Buổi đầu phải thật đáng nhớ</div>
+                          <div class="text-sm text-slate-300">Warm-up game • speaking check • mini mission • parent note</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-4 grid gap-3 text-sm leading-7 text-slate-200">
+                      <div class="flex gap-3"><i data-lucide="sparkle" class="mt-0.5 h-4 w-4 text-amber-300"></i><span>Ấn tượng đầu tiên của phụ huynh được đẩy lên rất mạnh.</span></div>
+                      <div class="flex gap-3"><i data-lucide="sparkle" class="mt-0.5 h-4 w-4 text-amber-300"></i><span>Con thấy vui ngay, không sợ lớp học mới.</span></div>
+                      <div class="flex gap-3"><i data-lucide="sparkle" class="mt-0.5 h-4 w-4 text-amber-300"></i><span>Website đóng vai trò “bán cảm giác” cực hiệu quả trước khi phụ huynh ra quyết định.</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative">
+              <div class="rounded-[2rem] border border-white/10 bg-white/12 p-5 backdrop-blur-xl shadow-glass sm:p-6 lg:sticky lg:top-28">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-[11px] font-extrabold uppercase tracking-[0.22em] text-slate-300">Book a trial</div>
+                    <div class="mt-2 text-2xl font-black">Đặt lịch học thử</div>
+                  </div>
+                  <div class="grid h-11 w-11 place-items-center rounded-2xl bg-white/10 text-amber-200"><i data-lucide="calendar-check-2" class="h-5 w-5"></i></div>
+                </div>
+
+                <div class="mt-5 space-y-5">
+                  <div>
+                    <div class="mb-3 text-sm font-bold text-slate-200">Chọn khối lớp</div>
+                    <div class="grid grid-cols-3 gap-3">
+                      <button class="slot active rounded-2xl border border-white/12 bg-white/8 px-3 py-3 text-sm font-bold text-white transition" data-group="grade">Lớp 1–2</button>
+                      <button class="slot rounded-2xl border border-white/12 bg-white/8 px-3 py-3 text-sm font-bold text-white transition" data-group="grade">Lớp 3–4</button>
+                      <button class="slot rounded-2xl border border-white/12 bg-white/8 px-3 py-3 text-sm font-bold text-white transition" data-group="grade">Lớp 5</button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="mb-3 text-sm font-bold text-slate-200">Chọn khung giờ đẹp</div>
+                    <div class="grid grid-cols-2 gap-3">
+                      <button class="slot active rounded-2xl border border-white/12 bg-white/8 px-3 py-3 text-sm font-bold text-white transition" data-group="time">17:30 • Thứ 4</button>
+                      <button class="slot rounded-2xl border border-white/12 bg-white/8 px-3 py-3 text-sm font-bold text-white transition" data-group="time">18:30 • Thứ 6</button>
+                      <button class="slot rounded-2xl border border-white/12 bg-white/8 px-3 py-3 text-sm font-bold text-white transition" data-group="time">09:00 • Thứ 7</button>
+                      <button class="slot rounded-2xl border border-white/12 bg-white/8 px-3 py-3 text-sm font-bold text-white transition" data-group="time">15:30 • Chủ nhật</button>
+                    </div>
+                  </div>
+
+                  <div class="grid gap-4 sm:grid-cols-2">
+                    <label class="grid gap-2 text-sm font-semibold">
+                      <span>Họ tên phụ huynh</span>
+                      <input type="text" placeholder="Ví dụ: Nguyễn Minh Anh" class="h-12 rounded-2xl border border-white/12 bg-white/10 px-4 text-white placeholder:text-slate-300 outline-none transition focus:border-amber-300" />
+                    </label>
+                    <label class="grid gap-2 text-sm font-semibold">
+                      <span>Số điện thoại</span>
+                      <input type="text" placeholder="Ví dụ: 09xx xxx xxx" class="h-12 rounded-2xl border border-white/12 bg-white/10 px-4 text-white placeholder:text-slate-300 outline-none transition focus:border-amber-300" />
+                    </label>
+                  </div>
+
+                  <label class="grid gap-2 text-sm font-semibold">
+                    <span>Điều phụ huynh quan tâm nhất</span>
+                    <textarea rows="4" placeholder="Ví dụ: Con nhút nhát, muốn cải thiện speaking..." class="rounded-2xl border border-white/12 bg-white/10 px-4 py-3 text-white placeholder:text-slate-300 outline-none transition focus:border-amber-300"></textarea>
+                  </label>
+
+                  <button id="trialSubmit" class="shine-line inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-violet-600 via-fuchsia-500 to-orange-400 px-5 py-4 text-sm font-black text-white shadow-orange transition hover:-translate-y-0.5">
+                    Giữ chỗ học thử ngay
+                    <i data-lucide="arrow-right" class="h-4 w-4"></i>
+                  </button>
+
+                  <div class="rounded-[1.4rem] border border-white/10 bg-slate-950/25 p-4 text-sm text-slate-200">
+                    <div class="flex items-center gap-3">
+                      <div class="grid h-10 w-10 place-items-center rounded-2xl bg-emerald-400/15 text-emerald-300"><i data-lucide="shield-check" class="h-5 w-5"></i></div>
+                      <div>
+                        <div class="font-black text-white">Đây đang là bản demo UI</div>
+                        <div>Gắn form thật, Zalo OA hoặc CRM là chạy được ngay.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stories" class="py-16 sm:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div class="max-w-3xl">
+            <div class="text-sm font-extrabold uppercase tracking-[0.24em] text-violet-700">Parent reactions</div>
+            <h2 class="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-5xl">Một site đẹp đúng cách sẽ khiến phụ huynh nghĩ: “Trung tâm này có vẻ làm thật, không phải làm màu.”</h2>
+          </div>
+          <div class="flex gap-2">
+            <button id="prevStory" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-violet-300 hover:text-violet-700"><i data-lucide="chevron-left" class="h-5 w-5"></i></button>
+            <button id="nextStory" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-violet-300 hover:text-violet-700"><i data-lucide="chevron-right" class="h-5 w-5"></i></button>
+          </div>
+        </div>
+
+        <div class="reveal mt-10 overflow-hidden rounded-[2.2rem] border border-slate-200 bg-white p-6 shadow-soft sm:p-8">
+          <div id="storyTrack" class="story-track flex">
+            <article class="min-w-full grid gap-6 lg:grid-cols-[.78fr_1.22fr] lg:items-center">
+              <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1000&q=80" alt="Parent 1" class="h-80 w-full rounded-[1.8rem] object-cover" />
+              <div>
+                <div class="flex items-center gap-1 text-amber-400">
+                  <i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                </div>
+                <p class="mt-5 text-2xl font-black leading-tight text-slate-950 sm:text-3xl">“Nhìn website là thấy trung tâm này có gu. Cảm giác vừa vui cho trẻ, vừa rất chuyên nghiệp cho phụ huynh.”</p>
+                <p class="mt-5 text-lg leading-8 text-slate-600">Tôi thích nhất là mọi thứ được dẫn rất logic. Xem xong không bị mệt, mà ngược lại muốn bấm học thử luôn.</p>
+                <div class="mt-6">
+                  <div class="font-black text-slate-950">Chị Minh Anh</div>
+                  <div class="text-sm text-slate-500">Phụ huynh bé lớp 2</div>
+                </div>
+              </div>
+            </article>
+            <article class="min-w-full grid gap-6 lg:grid-cols-[.78fr_1.22fr] lg:items-center">
+              <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1000&q=80" alt="Parent 2" class="h-80 w-full rounded-[1.8rem] object-cover" />
+              <div>
+                <div class="flex items-center gap-1 text-amber-400">
+                  <i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                </div>
+                <p class="mt-5 text-2xl font-black leading-tight text-slate-950 sm:text-3xl">“Cái section học thử nhìn rất xịn. Nó làm mình có cảm giác đây là nơi phụ huynh sẽ được chăm sóc tốt.”</p>
+                <p class="mt-5 text-lg leading-8 text-slate-600">Nhiều trung tâm chỉ làm web cho có. Bản này nhìn ra ngay là thương hiệu có chủ đích và đầu tư bài bản.</p>
+                <div class="mt-6">
+                  <div class="font-black text-slate-950">Anh Tuấn Dương</div>
+                  <div class="text-sm text-slate-500">Phụ huynh bé lớp 4</div>
+                </div>
+              </div>
+            </article>
+            <article class="min-w-full grid gap-6 lg:grid-cols-[.78fr_1.22fr] lg:items-center">
+              <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&w=1000&q=80" alt="Parent 3" class="h-80 w-full rounded-[1.8rem] object-cover" />
+              <div>
+                <div class="flex items-center gap-1 text-amber-400">
+                  <i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i><i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                </div>
+                <p class="mt-5 text-2xl font-black leading-tight text-slate-950 sm:text-3xl">“Nếu ảnh thật và thông tin thật được thay vào, website này đủ sức làm bộ mặt thương hiệu rất mạnh.”</p>
+                <p class="mt-5 text-lg leading-8 text-slate-600">Nó có vibe quốc tế hơn hẳn nhiều website giáo dục tôi từng thấy: sạch, xịn, có chuyển động và vẫn không bị lố.</p>
+                <div class="mt-6">
+                  <div class="font-black text-slate-950">Chị Thu Hà</div>
+                  <div class="text-sm text-slate-500">Phụ huynh bé lớp 5</div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div id="storyDots" class="mt-7 flex justify-center gap-2"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="py-16 sm:py-20 pb-28">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal text-center">
+          <div class="text-sm font-extrabold uppercase tracking-[0.24em] text-orange-600">FAQ</div>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-5xl">Một website xịn phải trả lời luôn các nỗi băn khoăn chính của phụ huynh</h2>
+        </div>
+
+        <div class="mt-12 grid gap-4">
+          <div class="faq-item reveal rounded-[1.8rem] border border-slate-200 bg-white p-6 shadow-soft" data-open="true">
+            <button class="faq-toggle flex w-full items-center justify-between gap-4 text-left">
+              <span class="text-xl font-black text-slate-950">Bé chưa biết nhiều tiếng Anh có theo được không?</span>
+              <i data-lucide="plus" class="faq-icon h-5 w-5 text-slate-500"></i>
+            </button>
+            <div class="faq-answer">
+              <div>
+                <p class="leading-8 text-slate-600">Có. Cấu trúc website và chương trình đều đang được thể hiện theo hướng chia rõ đầu vào cho từng nhóm lớp, để phụ huynh yên tâm rằng con không cần giỏi sẵn mới bắt đầu được.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item reveal rounded-[1.8rem] border border-slate-200 bg-white p-6 shadow-soft" data-open="false">
+            <button class="faq-toggle flex w-full items-center justify-between gap-4 text-left">
+              <span class="text-xl font-black text-slate-950">Phần học thử trên web này có thể biến thành form thật không?</span>
+              <i data-lucide="plus" class="faq-icon h-5 w-5 text-slate-500"></i>
+            </button>
+            <div class="faq-answer">
+              <div>
+                <p class="leading-8 text-slate-600">Được. Có thể gắn Google Form, Zalo, CRM, email, hoặc API riêng. Giao diện hiện tại đang làm theo kiểu ready-to-convert nên rất dễ chuyển thành bản dùng thật.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item reveal rounded-[1.8rem] border border-slate-200 bg-white p-6 shadow-soft" data-open="false">
+            <button class="faq-toggle flex w-full items-center justify-between gap-4 text-left">
+              <span class="text-xl font-black text-slate-950">Muốn website này “wow” hơn nữa thì bước tiếp theo là gì?</span>
+              <i data-lucide="plus" class="faq-icon h-5 w-5 text-slate-500"></i>
+            </button>
+            <div class="faq-answer">
+              <div>
+                <p class="leading-8 text-slate-600">Thay toàn bộ ảnh stock bằng ảnh thật của trung tâm, gắn video ngắn lớp học, thêm học phí/lịch khai giảng thật và thiết kế logo chuẩn brand kit. Khi đó hiệu quả thương hiệu sẽ nhảy vọt hơn nữa.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white/80 backdrop-blur-sm">
+    <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-8 text-sm text-slate-500 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+      <div class="flex items-center gap-3">
+        <div class="grid h-11 w-11 place-items-center rounded-[1rem] bg-gradient-to-br from-violet-700 via-fuchsia-500 to-orange-400 text-white shadow-soft"><i data-lucide="feather" class="h-5 w-5"></i></div>
+        <div>
+          <div class="font-black text-slate-950">VERBALIA – Học Viện Ngôn Ngữ Sáng Tạo</div>
+          <div>Learn today, shine tomorrow</div>
+        </div>
+      </div>
+      <div>Designed to feel global, premium, memorable and conversion-ready.</div>
+    </div>
+  </footer>
+
+  <div class="fixed inset-x-4 bottom-4 z-50 lg:hidden">
+    <a href="#trial" class="shine-line inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-slate-950 px-5 py-4 text-sm font-black text-white shadow-soft">
+      Đăng ký học thử miễn phí
+      <i data-lucide="arrow-right" class="h-4 w-4"></i>
+    </a>
+  </div>
+
+  <div id="toast" class="pointer-events-none fixed right-4 top-24 z-[80] translate-y-4 opacity-0 transition duration-300">
+    <div class="glass rounded-[1.5rem] border border-white/80 px-5 py-4 shadow-soft">
+      <div class="flex items-start gap-3">
+        <div class="grid h-10 w-10 place-items-center rounded-2xl bg-emerald-100 text-emerald-700"><i data-lucide="party-popper" class="h-5 w-5"></i></div>
+        <div>
+          <div class="font-black text-slate-950">Đã giữ chỗ bản demo</div>
+          <div class="text-sm text-slate-600">Khi gắn form thật, nút này sẽ gửi dữ liệu thực.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const qs = (s, p=document) => p.querySelector(s);
+    const qsa = (s, p=document) => [...p.querySelectorAll(s)];
+
+    const progressBar = qs('#progressBar');
+    const navbar = qs('#navbar');
+    const cursorBlob = qs('#cursorBlob');
+    const heroStage = qs('.hero-stage');
+
+    const onScroll = () => {
+      const scrollTop = window.scrollY;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? (scrollTop / max) * 100 : 0;
+      progressBar.style.width = pct + '%';
+
+      if (scrollTop > 16) {
+        navbar.classList.add('scale-[0.985]');
+      } else {
+        navbar.classList.remove('scale-[0.985]');
+      }
+    };
+    document.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    qsa('.reveal').forEach(el => {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .12 });
+      io.observe(el);
+    });
+
+    qsa('[data-counter]').forEach(el => {
+      let played = false;
+      const target = +el.dataset.counter;
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !played) {
+            played = true;
+            const start = performance.now();
+            const duration = 1400;
+            const step = now => {
+              const progress = Math.min((now - start) / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              el.textContent = Math.floor(target * eased);
+              if (progress < 1) requestAnimationFrame(step);
+              else el.textContent = target;
+            };
+            requestAnimationFrame(step);
+            observer.disconnect();
+          }
+        });
+      }, { threshold: .4 });
+      observer.observe(el);
+    });
+
+    const addTilt = el => {
+      el.addEventListener('mousemove', e => {
+        const r = el.getBoundingClientRect();
+        const x = e.clientX - r.left;
+        const y = e.clientY - r.top;
+        const rx = ((y / r.height) - .5) * -8;
+        const ry = ((x / r.width) - .5) * 10;
+        el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = '';
+      });
+    };
+    qsa('.tilt-card, .metric-card, .world-card, .trial-glow').forEach(addTilt);
+
+    if (heroStage) {
+      heroStage.addEventListener('mousemove', e => {
+        const r = heroStage.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width) * 100;
+        const y = ((e.clientY - r.top) / r.height) * 100;
+        document.documentElement.style.setProperty('--heroX', x + '%');
+        document.documentElement.style.setProperty('--heroY', y + '%');
+      });
+    }
+
+    document.addEventListener('mousemove', e => {
+      cursorBlob.style.left = e.clientX + 'px';
+      cursorBlob.style.top = e.clientY + 'px';
+    }, { passive: true });
+
+    qsa('[data-depth]').forEach(el => {
+      document.addEventListener('mousemove', e => {
+        const depth = parseFloat(el.dataset.depth || '0');
+        const x = (window.innerWidth / 2 - e.clientX) * depth * 0.06;
+        const y = (window.innerHeight / 2 - e.clientY) * depth * 0.06;
+        el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      }, { passive: true });
+    });
+
+    const mobileToggle = qs('#mobileToggle');
+    const mobileMenu = qs('#mobileMenu');
+    mobileToggle?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    qsa('#mobileMenu a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+    qsa('.faq-item').forEach(item => {
+      const btn = qs('.faq-toggle', item);
+      btn?.addEventListener('click', () => {
+        const open = item.dataset.open === 'true';
+        qsa('.faq-item').forEach(i => {
+          i.dataset.open = 'false';
+          qs('.faq-icon', i)?.setAttribute('data-lucide', 'plus');
+        });
+        item.dataset.open = open ? 'false' : 'true';
+        qs('.faq-icon', item)?.setAttribute('data-lucide', open ? 'plus' : 'minus');
+        lucide.createIcons();
+      });
+    });
+
+    const storyTrack = qs('#storyTrack');
+    const slides = qsa('#storyTrack > article');
+    const dotsWrap = qs('#storyDots');
+    const prevStory = qs('#prevStory');
+    const nextStory = qs('#nextStory');
+    let currentStory = 0;
+    let storyTimer;
+
+    const renderDots = () => {
+      if (!dotsWrap) return;
+      dotsWrap.innerHTML = slides.map((_, i) => `<button class="story-dot h-2.5 rounded-full bg-slate-200 transition-all ${i===currentStory ? 'active' : 'w-2.5'}" data-index="${i}"></button>`).join('');
+      qsa('.story-dot', dotsWrap).forEach(dot => {
+        dot.addEventListener('click', () => {
+          currentStory = Number(dot.dataset.index);
+          updateStory();
+          resetStoryTimer();
+        });
+      });
+    };
+
+    const updateStory = () => {
+      if (storyTrack) storyTrack.style.transform = `translateX(-${currentStory * 100}%)`;
+      renderDots();
+    };
+    const next = () => { currentStory = (currentStory + 1) % slides.length; updateStory(); };
+    const prev = () => { currentStory = (currentStory - 1 + slides.length) % slides.length; updateStory(); };
+    const resetStoryTimer = () => {
+      clearInterval(storyTimer);
+      storyTimer = setInterval(next, 5000);
+    };
+    prevStory?.addEventListener('click', () => { prev(); resetStoryTimer(); });
+    nextStory?.addEventListener('click', () => { next(); resetStoryTimer(); });
+    if (slides.length) { updateStory(); resetStoryTimer(); }
+
+    qsa('.slot').forEach(slot => {
+      slot.addEventListener('click', () => {
+        const group = slot.dataset.group;
+        qsa(`.slot[data-group="${group}"]`).forEach(s => s.classList.remove('active'));
+        slot.classList.add('active');
+      });
+    });
+
+    const trialSubmit = qs('#trialSubmit');
+    const toast = qs('#toast');
+    const launchToast = () => {
+      toast.classList.remove('translate-y-4', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      burstConfetti();
+      setTimeout(() => {
+        toast.classList.add('translate-y-4', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2600);
+    };
+    trialSubmit?.addEventListener('click', launchToast);
+
+    function burstConfetti() {
+      const colors = ['#6d28d9', '#ec4899', '#f97316', '#fbbf24', '#22c55e', '#38bdf8'];
+      for (let i = 0; i < 28; i++) {
+        const piece = document.createElement('span');
+        piece.style.position = 'fixed';
+        piece.style.left = (window.innerWidth * (.5 + (Math.random() - .5) * .2)) + 'px';
+        piece.style.top = (window.innerHeight * .45) + 'px';
+        piece.style.width = (Math.random() * 8 + 6) + 'px';
+        piece.style.height = (Math.random() * 12 + 8) + 'px';
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.borderRadius = Math.random() > .5 ? '999px' : '3px';
+        piece.style.zIndex = '90';
+        piece.style.pointerEvents = 'none';
+        const dx = (Math.random() - .5) * 420;
+        const dy = Math.random() * -260 - 120;
+        const rot = (Math.random() - .5) * 700;
+        piece.animate([
+          { transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
+          { transform: `translate(${dx}px, ${dy}px) rotate(${rot}deg)`, opacity: 1, offset: .45 },
+          { transform: `translate(${dx * 1.15}px, ${window.innerHeight * .65}px) rotate(${rot * 1.7}deg)`, opacity: 0 }
+        ], { duration: 1800 + Math.random() * 500, easing: 'cubic-bezier(.2,.8,.2,1)' });
+        document.body.appendChild(piece);
+        setTimeout(() => piece.remove(), 2400);
+      }
+    }
+  </script>
+</body>
+</html>
